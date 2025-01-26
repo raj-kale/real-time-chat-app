@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: rajk09/chat-app-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - chat-network
+
+  backend:
+    image: rajk09/chat-app-backend:latest
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./backend/.env
+    environment:
+      
+       - MONGODB_URI=mongodb+srv://rajkale715:VOP1g4GFy41WozrZ@cluster0.e60dg.mongodb.net/chat_db?retryWrites=true&w=majority&appName=Cluster0
+       - PORT=5001
+       - JWT_SECRET=ichigo
+
+       - CLOUDINARY_CLOUD_NAME=dqk9gbcp6
+       - CLOUDINARY_API_KEY=892928259722847
+       - CLOUDINARY_API_SECRET=schz2ei1m8pdPTv2XzzC3BqmZhE
+
+       - NODE_ENV=development
+    networks:
+      - chat-network
+
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - chat-network
+
+volumes:
+  mongodb-data:
+
+networks:
+  chat-network:
+    driver: bridge
