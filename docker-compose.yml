@@ -17,16 +17,13 @@ services:
     env_file:
       - ./backend/.env
     environment:
-      
-       - MONGODB_URI=mongodb+srv://rajkale715:VOP1g4GFy41WozrZ@cluster0.e60dg.mongodb.net/chat_db?retryWrites=true&w=majority&appName=Cluster0
-       - PORT=5001
-       - JWT_SECRET=ichigo
-
-       - CLOUDINARY_CLOUD_NAME=dqk9gbcp6
-       - CLOUDINARY_API_KEY=892928259722847
-       - CLOUDINARY_API_SECRET=schz2ei1m8pdPTv2XzzC3BqmZhE
-
-       - NODE_ENV=development
+      - MONGODB_URI=${MONGODB_URI}
+      - PORT=${PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - NODE_ENV=${NODE_ENV}
     networks:
       - chat-network
 
